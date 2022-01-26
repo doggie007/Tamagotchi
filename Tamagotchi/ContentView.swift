@@ -8,57 +8,53 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var tamagotchi = Tamagotchi()
+    
     var body: some View {
         VStack{
             Circle()
                 .fill(Color.pink)
-                .frame(width: 200, height: 200)
+                .frame(width: 150, height: 150)
             Form{
                 Section{
                     VStack(spacing:10){
                         HStack
                         {
-                            Text("Health: ")
+                            Text("Health: 5")
                                 .frame(maxWidth:.infinity)
                         }
-//                        Divider()
                         HStack{
-                            Text("Hunger: ")
+                            Text("Hunger: \(tamagotchi.hunger)")
                                 .frame(maxWidth:.infinity)
-                            Text("Happiness: ")
+                            Text("Happiness: 5")
                                 .frame(maxWidth:.infinity)
                         }
                         }
                     }
-                
-                
-                
-                Section{
-                    Text("Actions")
-                        .bold()
-                      
-                    VStack(){
-                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                    
+                    Section{
+                        Button(action: {
+                            tamagotchi.feedMeal()
+                        }, label: {
                             Text("Feed Meal")
                         })
-                        Divider()
-                        Button(action: {}, label: {
+                        Button(action: {
+                            tamagotchi.feedSnack()
+                        }, label: {
                             Text("Feed Snack")
                         })
-                        Divider()
+                       
                         Button(action: {}, label: {
                             Text("Play a Game")
                         })
-                        Divider()
+                        
                         Button(action: {}, label: {
                             Text("Give Medicine")
                         })
-                        Divider()
                         Button(action: {}, label: {
                             Text("Clean toilet")
                         })
                     }
-                }
             }
         }
     }

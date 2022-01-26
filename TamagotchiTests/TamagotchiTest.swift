@@ -10,14 +10,14 @@ import XCTest
 class TamagotchiTest: XCTestCase {
 
     //RED
-    func testEatSnackHungerDecreasesBy1() throws {
+    func testFeedSnackHungerDecreasesBy1() throws {
         //arrange (test set up)
 
         let myTamagotchi = Tamagotchi()
         let expectedHunger = 4
         
         //act (perform the functionality we want to test)
-        myTamagotchi.eatSnack()
+        myTamagotchi.feedSnack()
         
         //assert (check it did what we expected)
         XCTAssertEqual(expectedHunger, myTamagotchi.hunger)
@@ -32,11 +32,21 @@ class TamagotchiTest: XCTestCase {
         let expectedHunger = 0
         
         //act (perform the functionality we want to test)
-        myTamagotchi.eatSnack()
+        myTamagotchi.feedSnack()
         
         //assert (check it did what we expected)
         XCTAssertEqual(expectedHunger, myTamagotchi.hunger)
         
+    }
+    func testFeedMealHungerDecreasesBy3() throws{
+        let myTamagotchi = Tamagotchi()
+        let expectedHunger = 2
+        
+        //act (perform the functionality we want to test)
+        myTamagotchi.feedMeal()
+        
+        //assert (check it did what we expected)
+        XCTAssertEqual(expectedHunger, myTamagotchi.hunger)
     }
 
 }
