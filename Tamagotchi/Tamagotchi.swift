@@ -9,6 +9,12 @@ import Foundation
 
 class Tamagotchi: ObservableObject{
     @Published var hunger: Int = 5
+    @Published var happiness: Int = 5
+    @Published var age: Int = 0
+    @Published var health: Int = 5
+    @Published var cleanliness: Int = 5
+    
+    
     func feedMeal(){
         if hunger > 2{
             hunger -= 3
@@ -19,4 +25,25 @@ class Tamagotchi: ObservableObject{
             hunger -= 1
         }
     }
+    func playGame(){
+        if happiness < 5{
+            happiness += 1
+        }
+    }
+    func growOlder(){
+        age += 1
+    }
+    
+    func giveMedicine(){
+        if health < 5{
+            health += 1
+        }
+    }
+    func cleanBathroom(){
+        if cleanliness < 5{
+            cleanliness += 1
+        }
+    }
 }
+
+

@@ -9,12 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var tamagotchi = Tamagotchi()
-    
+    @State var secondsElapsed = 0
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     var body: some View {
         VStack{
-            Circle()
-                .fill(Color.pink)
-                .frame(width: 150, height: 150)
+//            AsyncImage(url: URL(string:"https://picsum.photos/200"))
+//                .frame(width:200,height:200)
+            
             Form{
                 Section{
                     VStack(spacing:10){
@@ -22,11 +23,19 @@ struct ContentView: View {
                         {
                             Text("Health: 5")
                                 .frame(maxWidth:.infinity)
+                            Text("Happiness: \(tamagotchi.happiness)")
+                                .frame(maxWidth:.infinity)
+                            
                         }
                         HStack{
                             Text("Hunger: \(tamagotchi.hunger)")
                                 .frame(maxWidth:.infinity)
-                            Text("Happiness: 5")
+                            Text("Cleanliness: 5")
+                                .frame(maxWidth:.infinity)
+                            
+                        }
+                        HStack{
+                            Text("Age: 0")
                                 .frame(maxWidth:.infinity)
                         }
                         }
@@ -44,19 +53,26 @@ struct ContentView: View {
                             Text("Feed Snack")
                         })
                        
-                        Button(action: {}, label: {
+                        Button(action: {
+                            tamagotchi.playGame()
+                        }, label: {
                             Text("Play a Game")
                         })
                         
-                        Button(action: {}, label: {
+                        Button(action: {
+                            tamagotchi.giveMedicine()
+                        }, label: {
                             Text("Give Medicine")
                         })
-                        Button(action: {}, label: {
+                        Button(action: {
+                            tamagotchi.cleanBathroom()
+                        }, label: {
                             Text("Clean toilet")
                         })
                     }
             }
         }
+//        .onReceive(timer, something)
     }
 }
 
